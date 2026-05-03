@@ -78,7 +78,7 @@ const PORTFOLIO_DATA: Thumbnail[] = [
   // Tech Style
   { id: 7, title: "Google’s Secret AI Video Tool Just Got MEGA Upgrades", category: "Tech Style", imageUrl: "https://i.ibb.co/k2pLDC9T/THOMAS2.jpg" },
   { id: 8, title: "These ChatGPT Tricks Are Insane", category: "Tech Style", imageUrl: "https://i.ibb.co/YFH7TfzD/aii.jpg" },
-{ id: 8, title: "These ChatGPT Tricks Are Insane", category: "Tech Style", imageUrl: "https://i.ibb.co/HLhnq03q/hand.jpg" },
+{ id: 9, title: "These ChatGPT Tricks Are Insane", category: "Tech Style", imageUrl: "https://i.ibb.co/HLhnq03q/hand.jpg" },
 
   // Vines Style
   { id: 13, title: "VISA LAGYO", category: "Entertainment Style", imageUrl: "https://i.ibb.co/whKnsGcj/og.jpg" },

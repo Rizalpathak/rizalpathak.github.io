@@ -7,7 +7,7 @@ export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
   return {
     plugins: [react(), tailwindcss()],
-    base: './', // Using relative paths makes it work on both root and sub-folders
+    base: '/', // Standard for root domain or User/Org pages (rizalpathak.github.io)
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
     },
