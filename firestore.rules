@@ -1,0 +1,26 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper: Validate Message
+    function isValidMessage(data) {
+      return data.keys().hasAll(['name', 'email', 'message', 'createdAt'])
+        && data.keys().size() >= 4 && data.keys().size() <= 6
+        && data.name is string && data.name.size() > 0 && data.name.size() <= 100
+        && data.email is string && data.email.matches('^.+@.+\\..+$')
+        && data.message is string && data.message.size() > 0 && data.message.size() <= 5000
+        && data.createdAt == request.time
+        && (!('ytChannel' in data) || (data.ytChannel is string && data.ytChannel.size() <= 200))
+        && (!('whatsapp' in data) || (data.whatsapp is string && data.whatsapp.size() <= 100));
+    }
+
+    match /messages/{messageId} {
+      allow create: if isValidMessage(request.resource.data);
+      // No public read access. Rizal can view these in the Firebase Console.
+    }
+  }
+}
