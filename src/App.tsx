@@ -73,12 +73,14 @@ const PORTFOLIO_DATA: Thumbnail[] = [
   
   // Documentary Style
   { id: 4, title: "The TRAGIC life of Nepal's FUNNIEST man", category: "Documentary Style", imageUrl: "https://i.ibb.co/8ghZbYzk/bhairav-aryal2.jpg" },
+  { id: 5, title: "The Most Dangerous Drug is Now Everywhere", category: "Documentary Style", imageUrl: "https://i.ibb.co/Y7hZJY8J/invisible.jpg" },
+  { id: 6, title: "What is the Real Best Way to Survive a Nuclear Blast?", category: "Documentary Style", imageUrl: "https://i.ibb.co/S4kDTKhf/nuke.jpg" },
  
 
   // Tech Style
   { id: 7, title: "Google’s Secret AI Video Tool Just Got MEGA Upgrades", category: "Tech Style", imageUrl: "https://i.ibb.co/k2pLDC9T/THOMAS2.jpg" },
-  { id: 8, title: "These ChatGPT Tricks Are Insane", category: "Tech Style", imageUrl: "https://i.ibb.co/YFH7TfzD/aii.jpg" },
-{ id: 9, title: "These ChatGPT Tricks Are Insane", category: "Tech Style", imageUrl: "https://i.ibb.co/HLhnq03q/hand.jpg" },
+  { id: 8, title: "ChatGPT Secrets You Didn't Know", category: "Tech Style", imageUrl: "https://i.ibb.co/YFH7TfzD/aii.jpg" },
+  { id: 9, title: "Mastering AI Productivity", category: "Tech Style", imageUrl: "https://i.ibb.co/HLhnq03q/hand.jpg" },
 
   // Vines Style
   { id: 13, title: "VISA LAGYO", category: "Entertainment Style", imageUrl: "https://i.ibb.co/whKnsGcj/og.jpg" },
@@ -227,13 +229,13 @@ const ThumbnailTicker = () => {
 
   return (
     <div className="pt-24 pb-8 bg-transparent overflow-hidden">
-      <div className="flex w-max animate-scroll">
+      <div className="flex w-max animate-scroll will-change-transform">
         {[0, 1, 2].map((i) => (
           <div key={i} className="flex gap-4 md:gap-8 pr-4 md:pr-8">
             {images.map((src, idx) => (
               <div 
-                key={idx}
-                className="flex-shrink-0 w-64 md:w-[450px] h-36 md:h-60 rounded-xl md:rounded-2xl overflow-hidden border border-white/5 dark:border-white/5 light:border-black/5"
+                key={`${i}-${idx}`}
+                className="flex-shrink-0 w-64 md:w-[450px] h-36 md:h-60 rounded-xl md:rounded-2xl overflow-hidden border border-white/5 dark:border-white/5 light:border-black/5 transform-gpu"
               >
                 <img 
                   src={src} 
@@ -351,7 +353,7 @@ const Hero = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: false, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.2 }}
           className="flex flex-col items-center"
         >
           <motion.div 
@@ -436,7 +438,7 @@ const WhyMe = () => {
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.2 }}
           className="text-center mb-16"
         >
           <h2 className="text-xs font-bold uppercase tracking-[0.4em] text-neon-blue mb-4 transition-all duration-300 hover:tracking-[0.6em]">Philosophy</h2>
@@ -452,7 +454,7 @@ const WhyMe = () => {
                 layout
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.1 }}
+                viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
                 className={`rounded-[3rem] overflow-hidden cursor-pointer border transition-all duration-700 shadow-2xl relative glass-box ${
                   isOpen 
@@ -496,24 +498,12 @@ const WhyMe = () => {
   );
 };
 
-const PortfolioItem = ({ item, index }: { item: typeof PORTFOLIO_DATA[0], index: number }) => {
+const PortfolioItem: React.FC<{ item: Thumbnail; index: number }> = ({ item, index }) => {
   const [showMobileOverlay, setShowMobileOverlay] = useState(false);
   
   return (
-    <motion.div
-      key={item.id}
-      layout
-      initial={{ opacity: 0, y: 40, scale: 0.95 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: false, margin: "-50px" }}
-      exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
-      transition={{ 
-        duration: 0.8, 
-        delay: (index % 3) * 0.1,
-        ease: [0.16, 1, 0.3, 1],
-        layout: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
-      }}
-      className="group relative cursor-pointer"
+    <div
+      className="group relative cursor-pointer transform-gpu"
       onClick={() => setShowMobileOverlay(!showMobileOverlay)}
     >
       <div className="relative aspect-video rounded-[2.5rem] overflow-hidden border border-white/5 shadow-2xl bg-[#0a0a0a] transition-all duration-700">
@@ -542,7 +532,7 @@ const PortfolioItem = ({ item, index }: { item: typeof PORTFOLIO_DATA[0], index:
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
@@ -569,7 +559,7 @@ const Portfolio = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.1 }}
+              viewport={{ once: true, amount: 0.1 }}
               className="text-center mb-12 md:mb-20"
             >
               <h2 className="text-[10px] font-black uppercase tracking-[0.4em] text-neon-blue mb-6 transition-all duration-300 hover:tracking-[0.6em] cursor-default">Portfolio</h2>
@@ -596,16 +586,13 @@ const Portfolio = () => {
           </div>
   
           {/* Gallery */}
-          <motion.div 
-            layout
+          <div 
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
           >
-            <AnimatePresence mode="popLayout">
-              {filteredThumbnails.map((item, index) => (
-                <PortfolioItem key={item.id} item={item} index={index} />
-              ))}
-            </AnimatePresence>
-          </motion.div>
+            {filteredThumbnails.map((item, index) => (
+              <PortfolioItem key={item.id} item={item} index={index} />
+            ))}
+          </div>
         </div>
       </section>
     );
@@ -664,7 +651,7 @@ const Contact = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.2 }}
           className="space-y-10 mb-20"
         >
           <div>
@@ -738,7 +725,7 @@ const Contact = () => {
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.1 }}
+            viewport={{ once: true, amount: 0.1 }}
             className="p-8 md:p-14 rounded-[3rem] shadow-3xl relative group overflow-hidden max-w-3xl mx-auto glass-box ring-1 ring-white/10 dark:ring-white/10 light:ring-black/5"
           >
             {/* Real Glass Shine */}
