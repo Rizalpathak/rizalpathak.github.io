@@ -209,7 +209,7 @@ const Navbar = () => {
                 ))}
               </div>
             </motion.div>
-          </motion.div>
+          </motion.div>  
         )}
       </AnimatePresence>
     </nav>
@@ -315,7 +315,7 @@ const Hero = () => {
             <div className="absolute inset-0 bg-gradient-to-tr from-neon-blue/30 via-neon-cyan/20 to-neon-purple/30 opacity-60 group-hover:opacity-100 transition-opacity duration-700" />
             <div className="w-full h-full rounded-full overflow-hidden bg-black dark:bg-black light:bg-gray-100 relative z-10 border border-white/5 dark:border-white/5 light:border-black/5 shadow-[inset_0_2px_10px_rgba(255,255,255,0.1)]">
               <img 
-                src="https://i.ibb.co/ZRfNxfK5/rizal.png" 
+                src="/rizal.png" 
                 alt="Rizal Pathak"
                 className="w-full h-full object-cover scale-110 translate-y-2 transition-transform duration-700 group-hover:scale-125 font-bold"
                 referrerPolicy="no-referrer"
